@@ -1,0 +1,3 @@
+#!/bin/bash
+# Always return success
+exit 0

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+BUILD_DIR=$1
+DEST="$BUILD_DIR/vendor/1password"
+
+mkdir -p "$DEST/bin"
+
+# Download and unzip 1Password CLI
+ARCH="amd64"
+OP_VERSION="v$(curl https://app-updates.agilebits.com/check/1/0/CLI2/en/2.0.0/N -s | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+')"
+curl -sSfo $DEST/op.zip \
+  https://cache.agilebits.com/dist/1P/op2/pkg/"$OP_VERSION"/op_linux_"$ARCH"_"$OP_VERSION".zip \
+  && unzip -od $DEST/bin $DEST/op.zip \
+  && rm $DEST/op.zip $DEST/bin/op.sig
+
+# Make the binary executable
+chmod +x $DEST/bin/op
+
+mkdir -p $BUILD_DIR/.profile.d
+
+cat <<'EOF' > $BUILD_DIR/.profile.d/1password.sh
+export PATH="$PATH:/app/vendor/1password/bin"
+EOF
