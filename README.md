@@ -9,7 +9,7 @@ To use this buildpack, follow these steps:
 1. Add the buildpack to your Heroku app:
 
   ```bash
-  heroku buildpacks:add https://github.com/missive/heroku-buildpack-1password-cli
+  heroku buildpacks:add https://github.com/planehq/heroku-buildpack-1password-cli
   ```
 
 2. Create a service account on 1Password by following these steps:
