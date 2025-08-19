@@ -7,6 +7,7 @@ mkdir -p "$DEST/bin"
 
 # Download and unzip 1Password CLI
 ARCH="amd64"
+OP_VERSION="v2.31.1"
 : "${OP_VERSION:=v$(curl -s https://app-updates.agilebits.com/check/1/0/CLI2/en/2.0.0/N | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+')}"
 curl -sSfo $DEST/op.zip \
   https://cache.agilebits.com/dist/1P/op2/pkg/"$OP_VERSION"/op_linux_"$ARCH"_"$OP_VERSION".zip \
